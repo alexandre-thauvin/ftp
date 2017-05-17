@@ -33,7 +33,17 @@ typedef struct 		s_data
   bool			isConnect;
 }			t_data;
 
-char **ma2d(char **);
+typedef struct 		s_cmd
+{
+  int 			nb_w;
+  char 			**cmd;
+}			t_cmd;
+
+
+char 		**ma2d(int, int);
+bool		check_end(char *);
+int 		nb_w(char *);
+char 		**cmd_to_tab(char*, char **);
 void 		user();
 void 		pass();
 void 		cwd();
