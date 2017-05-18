@@ -4,9 +4,22 @@
 
 #include "ftp.h"
 
-void	choice(t_cmd *cmd, void (*func[])())
+int	nb_line(char **tab)
 {
-  void		(*funci)();
+  int i;
+
+  i = 0;
+  while (tab[i] != NULL)
+    i++;
+  return i;
+}
+
+void	choice(t_cmd *cmd)
+{
+  void		(*func[11])(t_cmd *) = {user, pass, cwd, cdup,
+				       quit, dele, pwd, pasv, port, help, noop};
+  void		(*funci)(t_cmd *);
+
   int	i;
 
   i = 0;
@@ -15,7 +28,7 @@ void	choice(t_cmd *cmd, void (*func[])())
   if (i <= 10)
   {
     funci = func[i];
-    (*funci)();
+    (*funci)(cmd);
   }
   else
   {

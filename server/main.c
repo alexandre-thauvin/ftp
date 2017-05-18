@@ -20,24 +20,33 @@ char		**fill_tab(char **tab)
   return tab;
 }
 
-void 		dele()
+void 		dele(t_cmd *tab)
 {
-
+ //unlink(fichier) cf code erreur
 }
 
 void 		handle_client(t_client *init)
 {
   char 		buf[255];
-  void		(*func[11])() = {user, pass, cwd, cdup,
-				      quit, dele, pwd, pasv, port, help, noop};
+  t_data	dat;
   t_cmd		cmd;
 
+  cmd.client = init;
+  dat.isConnect = false;
+  dat.isLogin = false;
+  cmd.data = &dat;
   cmd.buf_tmp = NULL;
   cmd.tab = ma2d(12, 5);
   cmd.tab = fill_tab(cmd.tab);
+  write(cmd.client->client_fd, "220 All rights\r\n", strlen("220 All rights\r\n"));
   while (read(init->client_fd, buf, 255) > 0)
   {
-    fill_buff(buf, &cmd, func);
+    fill_buff(buf, &cmd);
+    if (cmd.data->code == 221)
+    {
+      write(cmd.client->client_fd, "221 Cya\r\n", strlen("221 Cya\r\n"));
+      return ;
+    }
   }
 }
 

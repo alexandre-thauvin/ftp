@@ -4,27 +4,29 @@
 
 #include "ftp.h"
 
-void 		cwd()
+void 		cwd(t_cmd *cmd)
+{
+  //chdir
+}
+
+void 		cdup(t_cmd *cmd)
+{
+  //getcwd
+ //chdir tout path
+}
+
+void 		pwd(t_cmd *cmd)
+{
+  //char buffer [255] getwd(buf, sizeof(buf))
+
+}
+
+void 		pasv(t_cmd *cmd)
 {
 
 }
 
-void 		cdup()
-{
-
-}
-
-void 		pwd()
-{
-
-}
-
-void 		pasv()
-{
-
-}
-
-void 		port()
+void 		port(t_cmd *cmd)
 {
 
 }

@@ -24,13 +24,14 @@ typedef struct 		s_client
   int 			fd;
   int 			port;
   int 			client_fd;
-  char 			*client_ip;
 }			t_client;
 
 typedef struct 		s_data
 {
   bool 			isLogin;
   bool			isConnect;
+  char 			*msg;
+  int 			code;
 }			t_data;
 
 typedef struct 		s_cmd
@@ -39,26 +40,29 @@ typedef struct 		s_cmd
   char 			**cmd;
   char 			*buf_tmp;
   char 			**tab;
+  t_data		*data;
+  t_client		*client;
 }			t_cmd;
 
-void		choice(t_cmd *, void (*[])());
+void		choice(t_cmd *);
+int		nb_line(char **tab);
 void		default_buff(t_cmd *, char *);
-void		fill_buff(char*, t_cmd *, void (*[])());
+void		fill_buff(char*, t_cmd *);
 char 		**ma2d(int, int);
 bool		check_end(char *);
 int 		nb_word(char *);
 char 		**cmd_to_tab(char*, char **);
-void 		user();
-void 		pass();
-void 		cwd();
-void 		cdup();
-void 		quit();
-void 		dele();
-void 		pwd();
-void 		pasv();
-void 		port();
-void 		help();
-void 		noop();
+void 		user(t_cmd *);
+void 		pass(t_cmd *);
+void 		cwd(t_cmd *);
+void 		cdup(t_cmd *);
+void 		quit(t_cmd *);
+void 		dele(t_cmd *);
+void 		pwd(t_cmd *);
+void 		pasv(t_cmd *);
+void 		port(t_cmd *);
+void 		help(t_cmd *);
+void 		noop(t_cmd *);
 
 
 

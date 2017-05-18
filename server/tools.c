@@ -17,7 +17,7 @@ void		default_buff(t_cmd *cmd, char * buf)
     cmd->buf_tmp = strcat(cmd->buf_tmp, buf);
 }
 
-void		fill_buff(char *buf, t_cmd *cmd, void (*func[])())
+void		fill_buff(char *buf, t_cmd *cmd)
 {
   if (check_end(buf))
   {
@@ -36,7 +36,7 @@ void		fill_buff(char *buf, t_cmd *cmd, void (*func[])())
       cmd->buf_tmp = NULL;
 
     }
-    choice(cmd, func);
+    choice(cmd);
   }
   else
     default_buff(cmd, buf);
