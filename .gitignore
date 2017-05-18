@@ -58,7 +58,6 @@ CMakeLists.txt
 cmake-build-debug/
 Supprimerait main.c
 
-server
 cmake-build-debug/
 CMakeFiles/
 CMakeCache.txt/

@@ -37,12 +37,16 @@ typedef struct 		s_cmd
 {
   int 			nb_w;
   char 			**cmd;
+  char 			*buf_tmp;
+  char 			**tab;
 }			t_cmd;
 
-
+void		choice(t_cmd *, void (*[])());
+void		default_buff(t_cmd *, char *);
+void		fill_buff(char*, t_cmd *, void (*[])());
 char 		**ma2d(int, int);
 bool		check_end(char *);
-int 		nb_w(char *);
+int 		nb_word(char *);
 char 		**cmd_to_tab(char*, char **);
 void 		user();
 void 		pass();
