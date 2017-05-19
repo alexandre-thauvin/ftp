@@ -1,16 +1,47 @@
+##
+## Makefile for  in /home/thauvi_a/rendu/tek2/trade
+##
+## Made by Alexandre Thauvin
+## Login   <thauvi_a@epitech.net>
+##
+## Started on  Mon Feb 27 11:44:29 2017 Alexandre Thauvin
+## Last update Sat May 20 00:24:53 2017 Alexandre Thauvin
+##
 
-all:
-	make -C ./server/
-	make -C ./client/
+NAME		= server
 
-re:	fclean all
+DIR		= src/
+
+SRCS		= $(DIR)main.c \
+		  $(DIR)auth.c \
+		  $(DIR)cmd.c \
+		  $(DIR)default.c \
+		  $(DIR)tools.c
+
+OBJS		= $(SRCS:.c=.o)
+
+GCC		= gcc
+
+RM		= rm -rf
+
+CFLAGS	= -Wall -Werror -W -Wextra -I ./includes -g
+
+$(NAME): $(OBJS)
+	$(GCC) $(OBJS) -o $(NAME) $(CFLAGS)
+
+all: $(NAME)
+
+.c.o:
+	$(GCC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean -C ./server/
-	make clean -C ./client/
+	$(RM) $(OBJS)
+	$(RM) *~
+	$(RM) *#
 
-fclean:
-	make fclean -C ./client/
-	make fclean -C ./server/
+fclean: clean
+	$(RM) $(NAME)
 
+re: fclean all
 
+.PHONY:         all clean fclean re
