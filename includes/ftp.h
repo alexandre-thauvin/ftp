@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <netdb.h>
@@ -24,14 +25,14 @@ typedef struct 		s_client
   int 			fd;
   int 			port;
   int 			client_fd;
+  char 			*path;
 }			t_client;
 
 typedef struct 		s_data
 {
   bool 			isLogin;
   bool			isConnect;
-  char 			*msg;
-  int 			code;
+  char 			*pseudo;
 }			t_data;
 
 typedef struct 		s_cmd
@@ -51,7 +52,7 @@ void		fill_buff(char*, t_cmd *);
 char 		**ma2d(int, int);
 bool		check_end(char *);
 int 		nb_word(char *);
-char 		**cmd_to_tab(char*, char **);
+char 		**cmd_to_tab(char*, char **, int);
 void 		user(t_cmd *);
 void 		pass(t_cmd *);
 void 		cwd(t_cmd *);

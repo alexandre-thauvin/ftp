@@ -22,7 +22,7 @@ GCC		= gcc
 
 RM		= rm -rf
 
-CFLAGS	= -Wall -Werror -W -Wextra -I ../includes
+CFLAGS	= -Wall -Werror -W -Wextra -I ../includes -g
 
 $(NAME): $(OBJS)
 	$(GCC) $(OBJS) -o $(NAME) $(CFLAGS)

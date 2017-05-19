@@ -23,17 +23,19 @@ void	choice(t_cmd *cmd)
   int	i;
 
   i = 0;
-  while (cmd->tab[i] != NULL && cmd->cmd[0] != cmd->tab[i])
+  while (cmd->tab[i] != NULL && strcmp(cmd->cmd[0], cmd->tab[i]) != 0)
     i++;
-  if (i <= 10)
+
+  printf("i : %d\ncmd : (%s)\n", i, cmd->cmd[0]);
+  if (i <= 21)
   {
+    if (i >= 11)
+      i -= 11;
     funci = func[i];
     (*funci)(cmd);
   }
   else
-  {
-    //todo renvoie de code selon rfc
-  }
+    dprintf(cmd->client->client_fd, "500 Unknown command.\r\n");
 }
 
 bool 	check_end(char *line)

@@ -25,14 +25,14 @@ void		fill_buff(char *buf, t_cmd *cmd)
     {
       cmd->nb_w = nb_word(buf);
       cmd->cmd = ma2d(cmd->nb_w + 1, 30);
-      cmd->cmd = cmd_to_tab(buf, cmd->cmd);
+      cmd->cmd = cmd_to_tab(buf, cmd->cmd, cmd->nb_w);
     }
     else
     {
       cmd->buf_tmp = strcat(cmd->buf_tmp, buf);
       cmd->nb_w = nb_word(cmd->buf_tmp);
       cmd->cmd = ma2d(cmd->nb_w + 1, 30);
-      cmd->cmd = cmd_to_tab(cmd->buf_tmp, cmd->cmd);
+      cmd->cmd = cmd_to_tab(cmd->buf_tmp, cmd->cmd, cmd->nb_w);
       cmd->buf_tmp = NULL;
 
     }
@@ -44,43 +44,42 @@ void		fill_buff(char *buf, t_cmd *cmd)
 
 int 	nb_word(char *line)
 {
-  int 	i;
-  int 	nb;
-
-  i = 0;
-  nb = 0;
-  while (line)
-  {
-    if (line[i] != ' ' && line[i] != '\0' && line[i] != '\r' && line[i] != '\n')
-      nb++;
-    while (line && line[i] != ' ')
-      i++;
-    while (line && line[i] == ' ')
-      i++;
+  int word_count = 0;
+  char * pos = (char *) line;
+  while (* pos) {
+    if (word_count == 0) {
+      word_count = 1;
+    }
+    if (* pos == ' ') {
+      word_count++;
+    }
+    pos++;
   }
-  return nb;
+  return word_count;
 }
 
-char 	**cmd_to_tab(char *line, char **tab)
+char 	**cmd_to_tab(char *str, char **tab, int nb_word)
 {
-  int i;
-  int j;
-  int z;
+  int	i;
+  int	j;
+  int	a;
 
   i = 0;
+  a = 0;
   j = 0;
-  z = 0;
-  while (line)
+  if (str == NULL)
+    return (0);
+  while (i < nb_word)
   {
-    tab[i][j] = line[z];
-    if (line[j] == ' ')
-    {
-      i++;
-      j = 0;
-    }
-    z++;
+    while (str[a] != ' ' && str[a] != '\0' && str[a] != '\n')
+      tab[i][j++] = str[a++];
+    tab[i][j] = '\0';
+    j = 0;
+    a++;
+    i++;
   }
-  return tab;
+  tab[i] = 0;
+  return (tab);
 }
 
 char 	**ma2d(int line, int col)
@@ -89,8 +88,8 @@ char 	**ma2d(int line, int col)
   char	**tab;
 
   i = 0;
-  tab = (char **)malloc(line * sizeof(char *));
-  while (i < 11)
+  tab = (char **)malloc((line + 1) * sizeof(char *));
+  while (i < line)
   {
     tab[i] = (char *)malloc(col * sizeof(char));
     i++;
