@@ -1,6 +1,12 @@
-//
-// Created by thauvi_a on 5/10/17.
-//
+/*
+** main.c for  in /home/thauvi_a/rendu/psu/PSU_2016_myftp/src
+**
+** Made by Alexandre Thauvin
+** Login   <thauvi_a@epitech.net>
+**
+** Started on  Sun May 21 17:16:49 2017 Alexandre Thauvin
+** Last update Sun May 21 17:16:51 2017 Alexandre Thauvin
+*/
 
 #include <stdio.h>
 #include "ftp.h"
@@ -30,7 +36,7 @@ char		**fill_tab(char **tab)
   tab[20] = "help";
   tab[21] = "noop";
   tab[22] = NULL;
-  return tab;
+  return (tab);
 }
 
 void 		dele(t_cmd *cmd)
@@ -55,7 +61,6 @@ void 		handle_client(t_client *init)
   cmd.tab = fill_tab(cmd.tab);
   cmd.data->isLogin = false;
   cmd.data->path = init->path;
-  cmd.data->up_path = init->path;
   dprintf(cmd.client->client_fd, "220 All rights\r\n");
   while (read(init->client_fd, buf, 255) > 0)
     fill_buff(buf, &cmd);
@@ -87,18 +92,19 @@ int		main(int ac, char **av)
 {
   t_client	init;
   pid_t 	fpid;
-  
+
   if (ac != 3)
   {
     printf("Usage: ./server port path\n");
-    return 1;
+    return (1);
   }
   init_var(&init, av);
   bind(init.fd, (const struct sockaddr *)&init.s_in, sizeof(init.s_in));
   listen (init.fd, 42 == -1);
   while (1)
   {
-    init.client_fd = accept(init.fd, (struct sockaddr *) &init.s_in_client, &init.s_in_size);
+    init.client_fd = accept(init.fd, (struct sockaddr *)
+     &init.s_in_client, &init.s_in_size);
     if (init.client_fd > 0)
       fpid = fork();
     if (fpid == 0)

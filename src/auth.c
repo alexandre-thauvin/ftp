@@ -1,7 +1,12 @@
-
-//
-// Created by thauvi_a on 5/16/17.
-//
+/*
+** auth.c for  in /home/thauvi_a/rendu/psu/PSU_2016_myftp/src
+**
+** Made by Alexandre Thauvin
+** Login   <thauvi_a@epitech.net>
+**
+** Started on  Sun May 21 17:16:08 2017 Alexandre Thauvin
+** Last update Sun May 21 17:16:12 2017 Alexandre Thauvin
+*/
 
 #include "ftp.h"
 
@@ -60,9 +65,12 @@ void 		help(t_cmd *cmd)
 {
   if (cmd->data->isConnect)
   {
-    dprintf(cmd->client->client_fd, "214-The following commands are recognized.\r\n");
+    dprintf(cmd->client->client_fd, "214-The following commands "
+     "are recognized.\r\n");
     dprintf(cmd->client->client_fd, "USER PASS CWD CDUP QUIT\n");
-    dprintf(cmd->client->client_fd, "DELE PWD PASV PORT HELP NOOP\r\n");
+    dprintf(cmd->client->client_fd, "DELE PWD PASV PORT HELP \n");
+    dprintf(cmd->client->client_fd, "NOOP\n214 Help OK.\r\n");
+
   }
   else
   dprintf(cmd->client->client_fd, "530 Please login with USER and PASS\r\n");

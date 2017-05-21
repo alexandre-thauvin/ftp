@@ -34,12 +34,11 @@ typedef struct 		s_data
   bool			isConnect;
   char 			*pseudo;
   char 			*path;
-  char 			*up_path;
 }			t_data;
 
 typedef struct 		s_cmd
 {
-  int 			nb_w;
+  unsigned int 		nb_w;
   char 			**cmd;
   char 			*buf_tmp;
   char 			**tab;
@@ -53,7 +52,7 @@ void		default_buff(t_cmd *, char *);
 void		fill_buff(char*, t_cmd *);
 char 		**ma2d(int, int);
 bool		check_end(char *);
-int 		nb_word(char *);
+unsigned int 	nb_word(char *);
 char 		**cmd_to_tab(char*, char **, int);
 void 		user(t_cmd *);
 void 		pass(t_cmd *);

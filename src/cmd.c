@@ -1,6 +1,12 @@
-//
-// Created by thauvi_a on 5/16/17.
-//
+/*
+** cmd.c for  in /home/thauvi_a/rendu/psu/PSU_2016_myftp/src
+**
+** Made by Alexandre Thauvin
+** Login   <thauvi_a@epitech.net>
+**
+** Started on  Sun May 21 17:16:20 2017 Alexandre Thauvin
+** Last update Sun May 21 17:16:22 2017 Alexandre Thauvin
+*/
 
 #include "ftp.h"
 
@@ -35,6 +41,7 @@ void 		cdup(t_cmd *cmd)
   final_path[i] = '\0';
   chdir(final_path);
   free(final_path);
+  getcwd(cmd->data->path, sizeof(cwd));
   dprintf(cmd->client->client_fd, "250 Success.\r\n");
 }
 

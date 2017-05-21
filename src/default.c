@@ -1,6 +1,12 @@
-//
-// Created by thauvi_a on 5/18/17.
-//
+/*
+** default.c for  in /home/thauvi_a/rendu/psu/PSU_2016_myftp/src
+**
+** Made by Alexandre Thauvin
+** Login   <thauvi_a@epitech.net>
+**
+** Started on  Sun May 21 17:16:32 2017 Alexandre Thauvin
+** Last update Sun May 21 17:16:35 2017 Alexandre Thauvin
+*/
 
 #include "ftp.h"
 
@@ -11,7 +17,7 @@ int	nb_line(char **tab)
   i = 0;
   while (tab[i] != NULL)
     i++;
-  return i;
+  return (i);
 }
 
 void	choice(t_cmd *cmd)
@@ -43,8 +49,8 @@ bool 	check_end(char *line)
   while (line)
   {
     if (line[i] == '\n')
-      return true;
+      return (true);
     i++;
   }
-  return false;
+  return (false);
 }

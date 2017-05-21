@@ -1,6 +1,12 @@
-//
-// Created by thauvi_a on 5/16/17.
-//
+/*
+** tools.c for  in /home/thauvi_a/rendu/psu/PSU_2016_myftp/src
+**
+** Made by Alexandre Thauvin
+** Login   <thauvi_a@epitech.net>
+**
+** Started on  Sun May 21 17:16:58 2017 Alexandre Thauvin
+** Last update Sun May 21 17:16:59 2017 Alexandre Thauvin
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,43 +48,43 @@ void		fill_buff(char *buf, t_cmd *cmd)
     default_buff(cmd, buf);
 }
 
-int 	nb_word(char *line)
+unsigned int 	nb_word(char *line)
 {
-  int	word_count;
+  unsigned int	w_count;
   char	*pos;
 
-  word_count = 0;
+  w_count = 0;
   pos = line;
   while (*pos) {
-    if (word_count == 0) {
-      word_count = 1;
+    if (w_count == 0) {
+      w_count = 1;
     }
-    if (*pos == ' ') {
-      word_count++;
+    if (*pos == 32) {
+      w_count++;
     }
     pos++;
   }
-  return word_count;
+  return (w_count);
 }
 
 char 	**cmd_to_tab(char *str, char **tab, int nb_word)
 {
   int	i;
   int	j;
-  int	a;
+  int	z;
 
   i = 0;
-  a = 0;
+  z = 0;
   j = 0;
   if (str == NULL)
     return (0);
   while (i < nb_word)
   {
-    while (str[a] != ' ' && str[a] != '\0' && str[a] != '\n')
-      tab[i][j++] = str[a++];
+    while (str[z] != 32 && str[z] != '\0' && str[z] != '\n')
+      tab[i][j++] = str[z++];
     tab[i][j] = '\0';
     j = 0;
-    a++;
+    z++;
     i++;
   }
   tab[i] = 0;
@@ -98,5 +104,5 @@ char 	**ma2d(int line, int col)
     i++;
   }
   tab[i] = NULL;
-  return tab;
+  return (tab);
 }
