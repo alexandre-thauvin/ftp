@@ -44,13 +44,16 @@ void		fill_buff(char *buf, t_cmd *cmd)
 
 int 	nb_word(char *line)
 {
-  int word_count = 0;
-  char * pos = (char *) line;
-  while (* pos) {
+  int	word_count;
+  char	*pos;
+
+  word_count = 0;
+  pos = line;
+  while (*pos) {
     if (word_count == 0) {
       word_count = 1;
     }
-    if (* pos == ' ') {
+    if (*pos == ' ') {
       word_count++;
     }
     pos++;

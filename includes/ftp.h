@@ -30,9 +30,11 @@ typedef struct 		s_client
 
 typedef struct 		s_data
 {
-  bool 			isLogin;
+  bool			isLogin;
   bool			isConnect;
   char 			*pseudo;
+  char 			*path;
+  char 			*up_path;
 }			t_data;
 
 typedef struct 		s_cmd
@@ -64,7 +66,5 @@ void 		pasv(t_cmd *);
 void 		port(t_cmd *);
 void 		help(t_cmd *);
 void 		noop(t_cmd *);
-
-
 
 #endif //CPP_PLAZZA_FTP_H

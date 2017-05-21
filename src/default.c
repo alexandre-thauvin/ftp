@@ -19,14 +19,11 @@ void	choice(t_cmd *cmd)
   void		(*func[11])(t_cmd *) = {user, pass, cwd, cdup,
 				       quit, dele, pwd, pasv, port, help, noop};
   void		(*funci)(t_cmd *);
-
   int	i;
 
   i = 0;
   while (cmd->tab[i] != NULL && strcmp(cmd->cmd[0], cmd->tab[i]) != 0)
     i++;
-
-  printf("i : %d\ncmd : (%s)\n", i, cmd->cmd[0]);
   if (i <= 21)
   {
     if (i >= 11)
