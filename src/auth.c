@@ -42,7 +42,8 @@ void 		pass(t_cmd *cmd)
     if (cmd->data->isLogin)
     {
       cmd->data->isLogin = false;
-      if (strcmp(cmd->data->pseudo, "anonymous") == 0)
+      if (strcmp(cmd->data->pseudo, "anonymous") == 0
+	  || strcmp(cmd->data->pseudo, "Anonymous") == 0)
       {
 	dprintf(cmd->client->client_fd, "230 Login Successful.\r\n");
 	cmd->data->isConnect = true;

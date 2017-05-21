@@ -80,7 +80,7 @@ char 	**cmd_to_tab(char *str, char **tab, int nb_word)
     return (0);
   while (i < nb_word)
   {
-    while (str[z] != 32 && str[z] != '\0' && str[z] != '\n')
+    while (str[z] != 32 && str[z] != '\0' && str[z] != '\n' && str[z] != '\r')
       tab[i][j++] = str[z++];
     tab[i][j] = '\0';
     j = 0;
