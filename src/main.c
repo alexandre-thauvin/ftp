@@ -29,6 +29,7 @@ char		**fill_tab(char **tab)
   tab[19] = "port";
   tab[20] = "help";
   tab[21] = "noop";
+  tab[22] = NULL;
   return tab;
 }
 
@@ -50,7 +51,7 @@ void 		handle_client(t_client *init)
   dat.isConnect = false;
   cmd.data = &dat;
   cmd.buf_tmp = NULL;
-  cmd.tab = ma2d(11, 5);
+  cmd.tab = ma2d(23, 5);
   cmd.tab = fill_tab(cmd.tab);
   cmd.data->isLogin = false;
   cmd.data->path = init->path;
